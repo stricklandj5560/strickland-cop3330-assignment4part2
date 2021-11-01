@@ -26,11 +26,15 @@
                   </VBox>
                </top>
                <center>
-                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                      <children>
                         <ScrollPane fx:id="todoScroll" fitToHeight="true" VBox.vgrow="ALWAYS">
                            <content>
-                              <VBox fx:id="scrollContent" prefHeight="200.0" prefWidth="100.0" />
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <VBox fx:id="scrollContent" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
                            </content>
                         </ScrollPane>
                         <Button mnemonicParsing="false" onAction="#addNew" text="Add new " />
