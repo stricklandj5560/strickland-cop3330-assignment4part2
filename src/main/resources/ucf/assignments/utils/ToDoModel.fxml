@@ -32,9 +32,14 @@
          <children>
             <Button mnemonicParsing="false" onAction="#addCell" text="Add New Item" />
             <Button mnemonicParsing="false" onAction="#removeSelectedCell" text="Remove Selected Cell" />
-            <Button mnemonicParsing="false" onAction="#deleteList" text="Delete List">
+            <Button mnemonicParsing="false" onAction="#saveList" text="Save List">
                <HBox.margin>
                   <Insets left="100.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deleteList" text="Delete List">
+               <HBox.margin>
+                  <Insets />
                </HBox.margin>
             </Button>
          </children>
