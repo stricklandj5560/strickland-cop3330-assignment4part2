@@ -1,6 +1,6 @@
 package ucf.assignments.models;
 
-import ucf.assignments.controllers.ToDoItem;
+import ucf.assignments.controllers.ToDoItemController;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Class to store varying data.
  */
 public class VariableData {
-    private ArrayList<ToDoItem> toDoItemInstances;
+    private ArrayList<ToDoItemController> toDoItemInstances;
     private static VariableData SINGLETON;
 
     /**
@@ -31,15 +31,15 @@ public class VariableData {
         toDoItemInstances.clear();
     }
 
-    public void removeToDoListInstance(ToDoItem instance) {
+    public void removeToDoListInstance(ToDoItemController instance) {
         toDoItemInstances.remove(instance);
     }
 
-    public void storeToDoListInstance(ToDoItem instance) {
+    public void storeToDoListInstance(ToDoItemController instance) {
         toDoItemInstances.add(instance);
     }
 
-    public ArrayList<ToDoItem> getToDoListInstances() {
+    public ArrayList<ToDoItemController> getToDoListInstances() {
         return toDoItemInstances;
     }
 }

@@ -57,6 +57,8 @@ public class ToDoListModel extends ListView {
             return;
         if (list.getItems().size() <= index)
             return;
+        if (index == -1)
+            return;
         list.getItems().remove(index);
     }
 

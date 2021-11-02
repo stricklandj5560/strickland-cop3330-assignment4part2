@@ -1,29 +1,24 @@
 package ucf.assignments.controllers;
 
 
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import ucf.assignments.models.ToDoListModel;
 import ucf.assignments.models.VariableData;
 import ucf.assignments.utils.SceneUtils;
 
-import javax.swing.*;
 
-
-public class ToDoItem {
+public class ToDoItemController {
     @FXML public TextField titleBox;
     @FXML public ListView<ToDoListModel.ToDoCell> toDoItemList;
-    @FXML public CheckBox showCompleted;
+    @FXML public RadioButton showCompleted;
+    @FXML public RadioButton showAll;
+    @FXML public RadioButton showIncompleted;
 
     private ToDoListModel convertedToDoItemList;
-    private ToDoItem currentInstance;
+    private ToDoItemController currentInstance;
 
     @FXML
     public void initialize() {
@@ -33,17 +28,26 @@ public class ToDoItem {
         titleBox.setText("Untitled " + VariableData.getInstance().getToDoListInstances().indexOf(currentInstance));
         convertedToDoItemList = new ToDoListModel(toDoItemList);
         convertedToDoItemList.addCell();
-        showCompleted.selectedProperty().addListener(new ChangeListener<Boolean>() {
+        ToggleGroup selectionGroup = new ToggleGroup();
+        selectionGroup.getToggles().addAll(showCompleted, showAll, showIncompleted);
+        selectionGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                convertedToDoItemList.showOnlyNotCompletedItems(newValue);
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if (showAll.isSelected()) {
+
+                }
             }
         });
+//        showCompleted.selectedProperty().addListener(new ChangeListener<Boolean>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                convertedToDoItemList.showOnlyNotCompletedItems(newValue);
+//            }
+//        });
     }
 
     @FXML
     public void removeSelectedCell() {
-        System.out.println("Call" + toDoItemList.getSelectionModel().getSelectedIndex() );
         convertedToDoItemList.remove(toDoItemList.getSelectionModel().getSelectedIndex());
     }
 

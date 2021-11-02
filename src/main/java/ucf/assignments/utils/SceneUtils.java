@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import ucf.assignments.controllers.MainSceneController;
+import ucf.assignments.models.PersistentData;
 
 public class SceneUtils {
 
@@ -55,7 +56,7 @@ public class SceneUtils {
      */
     public Parent getNewToDoListInstance() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("ToDoModel.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource(PersistentData.toDoModelFXMLName));
             return root;
         } catch (Exception e) {
             e.printStackTrace();

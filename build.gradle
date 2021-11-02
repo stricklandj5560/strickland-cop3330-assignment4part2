@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+group 'org.frostyInc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClassName = 'ucf.assignments.Main'
+    applicationName = 'Assignment 4'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs=["src/main/java"]
+        }
+        resources {
+            srcDirs=["src/main/resources"]
+        }
+    }
+}
+
+javafx {
+    version = "17"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
