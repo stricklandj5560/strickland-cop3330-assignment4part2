@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import ucf.assignments.controllers.MainSceneController;
 import ucf.assignments.models.PersistentData;
 

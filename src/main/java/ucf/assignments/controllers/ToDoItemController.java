@@ -44,17 +44,17 @@ public class ToDoItemController {
                 }
             }
         });
-//        showCompleted.selectedProperty().addListener(new ChangeListener<Boolean>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-//                convertedToDoItemList.showOnlyNotCompletedItems(newValue);
-//            }
-//        });
     }
 
     @FXML
     public void removeSelectedCell() {
+        showAll.setSelected(true);
         convertedToDoItemList.remove(toDoItemList.getSelectionModel().getSelectedIndex());
+    }
+
+    @FXML
+    public void saveList() {
+
     }
 
     @FXML
@@ -75,6 +75,8 @@ public class ToDoItemController {
 
     @FXML
     public void addCell() {
+        // select show all
+        showAll.setSelected(true);
         convertedToDoItemList.addCell();
     }
 
