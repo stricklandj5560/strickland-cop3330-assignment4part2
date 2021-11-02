@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox minHeight="500.0" minWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.controllers.MainSceneController">
+<HBox minHeight="600.0" minWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.controllers.MainSceneController">
    <children>
       <VBox HBox.hgrow="ALWAYS">
          <children>
@@ -25,7 +25,7 @@
                   </VBox>
                </top>
                <center>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #e9c46ae9c46a;" BorderPane.alignment="CENTER">
                      <children>
                         <ScrollPane fx:id="todoScroll" fitToHeight="true" VBox.vgrow="ALWAYS">
                            <content>
