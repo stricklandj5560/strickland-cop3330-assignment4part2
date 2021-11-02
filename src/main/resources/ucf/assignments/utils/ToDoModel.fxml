@@ -23,7 +23,8 @@
       <HBox alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#addCell" text="Add New Item" />
-            <Button mnemonicParsing="false" text="Delete List">
+            <Button mnemonicParsing="false" onAction="#removeSelectedCell" text="Remove Selected Cell" />
+            <Button mnemonicParsing="false" onAction="#deleteList" text="Delete List">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>

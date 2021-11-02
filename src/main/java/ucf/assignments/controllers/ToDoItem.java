@@ -12,6 +12,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import ucf.assignments.models.ToDoListModel;
 import ucf.assignments.models.VariableData;
+import ucf.assignments.utils.SceneUtils;
+
+import javax.swing.*;
 
 
 public class ToDoItem {
@@ -37,6 +40,30 @@ public class ToDoItem {
             }
         });
     }
+
+    @FXML
+    public void removeSelectedCell() {
+        System.out.println("Call" + toDoItemList.getSelectionModel().getSelectedIndex() );
+        convertedToDoItemList.remove(toDoItemList.getSelectionModel().getSelectedIndex());
+    }
+
+    @FXML
+    public void deleteList() {
+        // confirm deletion
+        selfDestruct();
+    }
+
+    /**
+     * Remove list
+     */
+    public void selfDestruct() {
+        VariableData.getInstance().getToDoListInstances().remove(currentInstance);
+        SceneUtils sInstance = SceneUtils.getInstance();
+        // remove child from scrollview content
+        sInstance.removeNodeFromParent(sInstance.getVBoxParent(titleBox), sInstance.getMainSceneControllerInstance().scrollContent);
+    }
+
+    @FXML
     public void addCell() {
         convertedToDoItemList.addCell();
     }

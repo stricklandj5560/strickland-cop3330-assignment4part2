@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import ucf.assignments.models.VariableData;
 import ucf.assignments.utils.SceneUtils;
 
 /**
@@ -15,7 +16,7 @@ public class MainSceneController {
 
     @FXML
     public void initialize() {
-        System.out.println("Test");
+        SceneUtils.getInstance().setMainSceneControllerInstance(this);
     }
 
     @FXML

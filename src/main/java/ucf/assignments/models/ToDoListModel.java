@@ -1,6 +1,8 @@
 package ucf.assignments.models;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +47,19 @@ public class ToDoListModel extends ListView {
             return;
         list.getItems().removeIf(item -> item.doneCheck.isSelected());
     }
+
+    /**
+     * Removes a cell at a specified index
+     * @param index index to remove from
+     */
+    public void remove(int index) {
+        if (list == null)
+            return;
+        if (list.getItems().size() <= index)
+            return;
+        list.getItems().remove(index);
+    }
+
     /**
      * Caches all of the items and then only displays the not completed items
      */
@@ -71,21 +86,26 @@ public class ToDoListModel extends ListView {
         private final HBox cellWrapper = new HBox();
         private final TextField textItem = new TextField();
         private final CheckBox doneCheck = new CheckBox("Completed");
+        private final DatePicker datePicker = new DatePicker();
         private final ToDoCell toDoInstance;
         ToDoCell() {
             toDoInstance = this;
-            doneCheck.setOnAction(new EventHandler<ActionEvent>() {
+            doneCheck.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
-                public void handle(ActionEvent event) {
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                     // gray out if completed
-                    cellWrapper.setOpacity(doneCheck.isSelected() ? 0.5 : 1);
+                    cellWrapper.setOpacity(newValue ? 0.5 : 1);
                 }
             });
         }
+
+        /**
+         * Sets the data in the cell
+         */
         public void setData() {
             textItem.setPromptText("Enter text here...");
             textItem.setMinWidth(250);
-            cellWrapper.getChildren().addAll(textItem, doneCheck);
+            cellWrapper.getChildren().addAll(textItem, new HBox(new Label("Date Due: ") ,datePicker), doneCheck);
             cellWrapper.setAlignment(Pos.CENTER_LEFT);
             cellWrapper.setSpacing(5);
         }
