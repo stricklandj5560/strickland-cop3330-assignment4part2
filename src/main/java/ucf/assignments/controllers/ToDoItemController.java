@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ucf.assignments.models.ToDoListModel;
 import ucf.assignments.models.VariableData;
+import ucf.assignments.utils.SaveUtils;
 import ucf.assignments.utils.SceneUtils;
 
 
@@ -17,7 +18,7 @@ public class ToDoItemController {
     @FXML public RadioButton showAll;
     @FXML public RadioButton showIncompleted;
 
-    private ToDoListModel convertedToDoItemList;
+    public ToDoListModel convertedToDoItemList;
     private ToDoItemController currentInstance;
 
     @FXML
@@ -26,8 +27,8 @@ public class ToDoItemController {
         // save instance of to-do list
         VariableData.getInstance().storeToDoListInstance(currentInstance);
         titleBox.setText("Untitled " + VariableData.getInstance().getToDoListInstances().indexOf(currentInstance));
+        // convert list view
         convertedToDoItemList = new ToDoListModel(toDoItemList);
-        convertedToDoItemList.addCell();
         ToggleGroup selectionGroup = new ToggleGroup();
         selectionGroup.getToggles().addAll(showCompleted, showAll, showIncompleted);
         selectionGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
@@ -54,7 +55,7 @@ public class ToDoItemController {
 
     @FXML
     public void saveList() {
-
+        SaveUtils.getInstance().saveList(this);
     }
 
     @FXML

@@ -39,8 +39,7 @@
                         <HBox alignment="CENTER" spacing="5.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#addNew" text="Add New " />
-                              <Button mnemonicParsing="false" text="Load" />
-                              <Button mnemonicParsing="false" onAction="#addNew" text="Save All" />
+                              <Button mnemonicParsing="false" onAction="#loadList" text="Load" />
                            </children>
                         </HBox>
                      </children>
