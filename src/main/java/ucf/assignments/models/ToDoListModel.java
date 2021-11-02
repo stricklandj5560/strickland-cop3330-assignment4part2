@@ -40,6 +40,9 @@ public class ToDoListModel extends ListView {
         });
     }
 
+    /**
+     * Removes completed items
+     */
     public void removeCompletedItems() {
         if (list.getItems() == null)
             return;
@@ -48,6 +51,16 @@ public class ToDoListModel extends ListView {
         list.getItems().removeIf(item -> item.doneCheck.isSelected());
     }
 
+    /**
+     * Removes incompletedItems
+     */
+    public void removeIncompletedItems() {
+        if (list.getItems() == null)
+            return;
+        if (list.getItems().size() == 0)
+            return;
+        list.getItems().removeIf(item -> !item.doneCheck.isSelected());
+    }
     /**
      * Removes a cell at a specified index
      * @param index index to remove from
@@ -64,17 +77,30 @@ public class ToDoListModel extends ListView {
 
     /**
      * Caches all of the items and then only displays the not completed items
+     * @param showType 0 = all, 1 = only incompleted, 2 = only completed
      */
-    public void showOnlyNotCompletedItems(boolean doShow) {
-        // if we need to show only the not completed items, cache our current list
-        if (doShow) {
-            cachedList = FXCollections.observableArrayList(list.getItems());
-            removeCompletedItems();
-            return;
-        }
+    public void showItems(int showType) {
         // set items as cached list
-        list.setItems(cachedList);
+        if (cachedList != null)
+            list.setItems(cachedList);
+        // if we need to show only the not completed items, cache our current list
+        switch (showType) {
+            case 0:
+                // do nothing, already showing all
+                break;
+                // show all complete
+            case 1:
+                cachedList = FXCollections.observableArrayList(list.getItems());
+                removeCompletedItems();
+                break;
+            case 2:
+                cachedList = FXCollections.observableArrayList(list.getItems());
+                removeIncompletedItems();
+                break;
+        }
+
     }
+
 
     public void addCell() {
         ObservableList<ToDoCell> output = list.getItems();

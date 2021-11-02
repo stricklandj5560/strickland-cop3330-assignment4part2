@@ -34,7 +34,13 @@ public class ToDoItemController {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
                 if (showAll.isSelected()) {
-
+                    convertedToDoItemList.showItems(0);
+                }
+                if (showIncompleted.isSelected()) {
+                    convertedToDoItemList.showItems(1);
+                }
+                if (showCompleted.isSelected()) {
+                    convertedToDoItemList.showItems(2);
                 }
             }
         });
