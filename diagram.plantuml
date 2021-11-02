@@ -1,0 +1,86 @@
+@startuml
+
+class "App" {
+  start(Stage)
+}
+
+class "Main"
+
+class "MainSceneController" {
+  todoScroll : ScrollPane
+  scrollContent : VBox
+  addNew()
+  addNewToDoList()
+  initialize()
+  loadList()
+}
+
+class "PersistentData"
+
+class "SaveUtils" {
+  outputDir : Path
+  categoryRegex : String
+  singleLineRegex : String
+  loadList(File, ToDoItemController)
+  promptToSaveOutput() : boolean
+  saveList(ToDoItemController)
+}
+
+class "SceneUtils" {
+  mainSceneControllerInstance : MainSceneController
+  getVBoxParent(Node) : Parent
+  removeNodeFromParent(Node, VBox)
+}
+
+class "ToDoCell" {
+  cellWrapper : HBox
+  textItem : TextField
+  doneCheck : CheckBox
+  datePicker : DatePicker
+  toDoInstance : ToDoCell
+  this$0 : ToDoListModel
+  setData()
+}
+
+class "ToDoItemController" {
+  titleBox : TextField
+  toDoItemList : ListView<ToDoCell>
+  showCompleted : RadioButton
+  showAll : RadioButton
+  showIncompleted : RadioButton
+  convertedToDoItemList : ToDoListModel
+  currentInstance : ToDoItemController
+  addCell()
+  deleteList()
+  initialize()
+  removeSelectedCell()
+  saveList()
+  selfDestruct()
+}
+
+class "ToDoListModel" {
+  list : ListView<ToDoCell>
+  cachedList : ObservableList<ToDoCell>
+  addCell()
+  loadCell(String, String, boolean)
+  remove(int)
+  removeCompletedItems()
+  removeIncompletedItems()
+  showItems(int)
+}
+
+class "VariableData" {
+  toDoItemInstances : ArrayList<ToDoItemController>
+  clearToDoAllInstances()
+  removeToDoListInstance(ToDoItemController)
+  storeToDoListInstance(ToDoItemController)
+}
+
+"SaveUtils" --> "ToDoItemController" : use
+"SceneUtils" --> "MainSceneController" : mainSceneControllerInstance
+"ToDoCell" "*" <-> "ToDoListModel" : this$0/list/cachedList
+"ToDoItemController" --> "ToDoCell" : toDoItemList
+"ToDoItemController" --> "ToDoListModel" : convertedToDoItemList
+"VariableData" --> "*" "ToDoItemController" : toDoItemInstances
+
+@enduml

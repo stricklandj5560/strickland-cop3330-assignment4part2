@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Jonathan Strickland
+ */
+
 package ucf.assignments.models;
 
 public class PersistentData {

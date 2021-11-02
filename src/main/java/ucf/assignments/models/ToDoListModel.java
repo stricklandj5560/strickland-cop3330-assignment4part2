@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Jonathan Strickland
+ */
+
 package ucf.assignments.models;
 
 
@@ -10,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
-import java.util.Observable;
 
 public class ToDoListModel extends ListView {
     private ListView<ToDoCell> list;
